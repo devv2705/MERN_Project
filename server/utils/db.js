@@ -1,6 +1,7 @@
 const mongoose=require("mongoose")
 
-const URI="mongodb://localhost/mern_db"
+
+const URI=process.env.MONGODB_URI
  const connect_dB=async ()=>{
     try{
 
