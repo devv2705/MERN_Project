@@ -29,10 +29,11 @@ const register=async(req,res)=>{
 
         const userCreated=await User.create({username,email,phone,password:hash_pass})
 
-        res.status(200).json(userCreated)
+        res.status(201).json({msg:"Registration Successfull",token:await userCreated.generateToken(),userId:userCreated._id.toString()})
     }catch(err){
-        console.log(err)
+        res.status(500).json("Internal server Error")
     }
 }
+
 
 module.exports={home,register}
