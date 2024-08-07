@@ -2,16 +2,18 @@ const express = require("express")
 const app=express()
 //dotenv is used for hide sensitive information
 require('dotenv').config()
-const router=require("../server/routes/auth-router") 
+const authRoute=require("../server/routes/auth-router") 
+const contactRoute=require("../server/routes/contact-router")
 const connect_dB=require("../server/utils/db")
 const errMiddleware = require("./middelwares/error-middelware")
 
 app.use(express.json())
 
-app.use("/api/auth",router);
-app.use("/api/auth",router);
+app.use("/api/auth",authRoute);
+app.use("/api/form",contactRoute)
 
 
+//all error will go to error middleware
 app.use(errMiddleware)
 const PORT=4000;
 
