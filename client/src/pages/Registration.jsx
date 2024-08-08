@@ -24,40 +24,34 @@ export const Registration=()=>{
             [name]:value,
         })
     }
-   const handleSubmit=async(e)=> {
-
-    e.preventDefault();
-    console.log(user)
-    try {
-        const response=await fetch(`http://localhost:4000/api/auth/registration`,{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json",
-            },
-            body:JSON.stringify(user),
-        });
-        if(response.ok){
-            setUser({
-
-                username:"",
-                email:"",
-                phone:"",
-                password:"",
-
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log("User data being sent:", user);
+        try {
+            const response = await fetch(`http://localhost:4000/api/auth/registration`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(user),
             });
-
-            navigate("/login");
-
-        }
-        console.log(response)
-        
-    } catch (error) {
-        console.log("register",error)
-        
-    }
     
-
-   }
+            if (response.ok) {
+                setUser({
+                    username: "",
+                    email: "",
+                    phone: "",
+                    password: "",
+                });
+                navigate("/login");
+            } else {
+                const errorData = await response.json();
+                console.error("Error response data:", errorData);
+            }
+        } catch (error) {
+            console.log("register error", error);
+        }
+    };
     return <>
      <section>
         <main>
