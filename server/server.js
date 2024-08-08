@@ -10,7 +10,12 @@ const cors=require("cors")
 
 //handling coes policy issue because our frontend and backend running on diffrent port num
 //lets handle that
-app.use(cors)
+const corsOption={
+    origin:"http://localhost:5173",
+    methods:"GET,POST,PUT,DELETE,PATCH,HEAD",
+    Credential:true
+}
+app.use(cors(corsOption))
 
 app.use(express.json())
 
