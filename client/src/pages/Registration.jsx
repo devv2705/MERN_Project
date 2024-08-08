@@ -19,10 +19,25 @@ export const Registration=()=>{
             [name]:value,
         })
     }
-   const handleSubmit=(e)=> {
+   const handleSubmit=async(e)=> {
 
     e.preventDefault();
-    alert(user)
+    try {
+
+        const response=await fetch(`http://localhost:4000/api/auth/registration`,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+            },
+            body:JSON.stringify(user),
+        })
+        console.log(response)
+        
+    } catch (error) {
+        console.log("register",error)
+        
+    }
+    
 
    }
     return <>

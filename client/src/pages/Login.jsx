@@ -30,7 +30,7 @@ export const Login=()=>{
                        <img src="/image/regi.jpg" alt="registation image" width="500" height="500" />
                    </div>
                    <div className="registration-form">
-                       <h1 className="main-heading">Registration Form</h1>
+                       <h1 className="main-heading">Login Form</h1>
                        <br />
                        <form onSubmit={handleSubmit}>
                            <div>

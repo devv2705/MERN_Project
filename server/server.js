@@ -6,6 +6,11 @@ const authRoute=require("../server/routes/auth-router")
 const contactRoute=require("../server/routes/contact-router")
 const connect_dB=require("../server/utils/db")
 const errMiddleware = require("./middelwares/error-middelware")
+const cors=require("cors")
+
+//handling coes policy issue because our frontend and backend running on diffrent port num
+//lets handle that
+app.use(cors)
 
 app.use(express.json())
 
