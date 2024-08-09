@@ -1,16 +1,24 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const [token, setToken] = useState(localStorage.getItem('token') || "");
 
-  //function to stored the token in local storage
   const storeTokenInLocalStorage = (serverToken) => {
-    return localStorage.setItem("token", serverToken);
+    setToken(serverToken);
+    localStorage.setItem("token", serverToken);
+  };
+
+  const isLoggedIn = !!token;
+
+  const LogoutUser = () => {
+    setToken("");
+    localStorage.removeItem("token");
   };
 
   return (
-    <AuthContext.Provider value={{ storeTokenInLocalStorage }}>
+    <AuthContext.Provider value={{ isLoggedIn, storeTokenInLocalStorage, LogoutUser }}>
       {children}
     </AuthContext.Provider>
   );
@@ -19,7 +27,7 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => {
   const authContextValue = useContext(AuthContext);
   if (!authContextValue) {
-    throw new Error("useAuth used outside of the Provider");
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return authContextValue;
 };
