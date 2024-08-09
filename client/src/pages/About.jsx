@@ -1,3 +1,6 @@
+import { useAuth } from "../store/auth";
+
 export const About=()=>{
-    return <h1>Hello About Page</h1>
-};
+    const {user}=useAuth()
+    return <h1>Welcome,{user ? ` ${user.username} to our website`  : ` to our Website` }</h1>
+}; 

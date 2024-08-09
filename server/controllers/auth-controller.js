@@ -74,7 +74,7 @@ const user=async(req,res)=>{
         const userData=req.user
         
 
-        return res.status(200).json({msg:userData})
+        return res.status(200).json({userData})
 
 
         
