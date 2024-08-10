@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import {toast} from "react-toastify"
 
 export const Login=()=>{
 
@@ -37,7 +38,7 @@ export const Login=()=>{
 
             if(response.ok){
 
-                alert("Login Sucessful")
+                toast.success("Login Sucessful")
                 storeTokenInLocalStorage(res_data.token)
 
 
@@ -50,7 +51,7 @@ export const Login=()=>{
 
 
             }else{
-                alert(res_data.extraDetails ? res_data.extraDetails : res_data.message)
+                toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message)
               
             }
             
