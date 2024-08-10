@@ -33,13 +33,11 @@ export const Login=()=>{
                 },
                 body:JSON.stringify(user)
             })
+            const res_data= await response.json()
 
-            console.log("login-form",response)
             if(response.ok){
 
                 alert("Login Sucessful")
-                const res_data= await response.json()
-                console.log(res_data.token)
                 storeTokenInLocalStorage(res_data.token)
 
 
@@ -52,8 +50,8 @@ export const Login=()=>{
 
 
             }else{
-                alert("Invalid")
-                console.log("invalid login cradential")
+                alert(res_data.extraDetails ? res_data.extraDetails : res_data.message)
+              
             }
             
         } catch (error) {

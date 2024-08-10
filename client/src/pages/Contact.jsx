@@ -44,8 +44,8 @@ export const Contact = () => {
 
             if (response.ok) {
                 setContact({
-                    username: "",
-                    email: "",
+                    username: user.username,
+                    email: user.email,
                     message: "",
                 });
                 alert("Message sent successfully");

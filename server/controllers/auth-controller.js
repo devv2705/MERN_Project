@@ -20,7 +20,7 @@ const register=async(req,res)=>{
 
 
         if(userExist){
-            return res.status(400).json({msg:"Email Already Exist"})
+            return res.status(400).json({message:"Email Already Exist"})
         }
 
         //hash the password
@@ -50,7 +50,7 @@ const login=async (req,res)=>{
 
         if(isPassValid){
 
-            res.status(200).json({msg:"Login Successfull",
+            res.status(200).json({message:"Login Successfull",
 
                 token:await userExist.generateToken(),
 

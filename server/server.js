@@ -4,6 +4,7 @@ const app=express()
 require('dotenv').config()
 const authRoute=require("../server/routes/auth-router") 
 const contactRoute=require("../server/routes/contact-router")
+const serviceRoute=require("./routes/service-router")
 const connect_dB=require("../server/utils/db")
 const errMiddleware = require("./middelwares/error-middelware")
 const cors=require("cors")
@@ -21,6 +22,7 @@ app.use(express.json())
 
 app.use("/api/auth",authRoute);
 app.use("/api/form",contactRoute)
+app.use("/api/data",serviceRoute)
 
 
 //all error will go to error middleware

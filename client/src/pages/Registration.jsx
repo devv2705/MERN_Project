@@ -38,10 +38,12 @@ export const Registration=()=>{
                 },
                 body: JSON.stringify(user),
             });
-    
+
+            const res_data= await response.json();
+            console.log(res_data.token)
+
             if (response.ok) {
-                const res_data= await response.json();
-                console.log(res_data.token)
+               
                 storeTokenInLocalStorage(res_data.token)
                 setUser({
                     username: "",
@@ -51,8 +53,7 @@ export const Registration=()=>{
                 });
                 navigate("/login");
             } else {
-                const errorData = await response.json();
-                console.error("Error response data:", errorData);
+                alert(res_data.extraDetails ? res_data.extraDetails :res_data.message)
             }
         } catch (error) {
             console.log("register error", error);
