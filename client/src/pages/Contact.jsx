@@ -8,7 +8,6 @@ export const Contact = () => {
         message: "",
     });
 
-    const [loading, setLoading] = useState(true); // Add loading state
     const { user } = useAuth();
 
     useEffect(() => {
@@ -18,7 +17,6 @@ export const Contact = () => {
                 email: user.email,
                 message: "",
             });
-            setLoading(false); // Set loading to false once user data is set
         }
     }, [user]);
 
@@ -58,73 +56,86 @@ export const Contact = () => {
         }
     };
 
-    if (loading) {
-        return <div>Loading...</div>; // Show loading indicator
-    }
-
     return (
         <>
-            <section>
-                <main>
-                    <div className="section-contact">
-                        <div className="container grid grid-two-cols">
-                            <div className="registration-image">
-                                <img src="/image/regi.jpg" alt="registration image" width="500" height="500" />
-                            </div>
-                            <div className="registration-form">
-                                <h1 className="main-heading">Contact Form</h1>
-                                <br />
-                                <form onSubmit={handleSubmit}>
-                                    <div>
-                                        <label htmlFor="username">Username</label>
-                                        <input
-                                            type="text"
-                                            name="username"
-                                            placeholder="Enter username"
-                                            id="username"
-                                            required
-                                            autoComplete="off"
-                                            value={contact.username}
-                                            onChange={handleInput}
-                                        />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="email">Email</label>
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            placeholder="Enter Email"
-                                            id="email"
-                                            required
-                                            autoComplete="off"
-                                            value={contact.email}
-                                            onChange={handleInput}
-                                        />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="message">Message</label>
-                                        <textarea
-                                            name="message"
-                                            id="message"
-                                            placeholder="Enter your message"
-                                            required
-                                            autoComplete="off"
-                                            value={contact.message}
-                                            onChange={handleInput}
-                                            cols={30}
-                                            rows={5}
-                                        ></textarea>
-                                    </div>
-                                    <br />
-                                    <button type="submit" className="btn btn-submit">
-                                        Send
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </main>
+          <section className="section-contact">
+            <div className="contact-content container">
+              <h1 className="main-heading">contact us</h1>
+            </div>
+            {/* contact page main  */}
+            <div className="container grid grid-two-cols">
+              <div className="contact-img">
+                <img src="/images/support.png" alt="we are always ready to help" height="500" />
+              </div>
+    
+              {/* contact form content actual  */}
+              <section className="section-form">
+                <form onSubmit={handleSubmit}>
+                  <div>
+                    <label htmlFor="username">username</label>
+                    <br />
+                    <input
+                      type="text"
+                      name="username"
+                      id="username"
+                      autoComplete="off"
+                      value={contact.username}
+                      onChange={handleInput}
+                      required
+                      
+                    />
+                  </div>
+                  <br /> <br />
+    
+                  <div>
+                    <label htmlFor="email">email</label>
+                    <br />
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      autoComplete="off"
+                      value={contact.email}
+                      onChange={handleInput}
+                      required
+                    />
+                  </div>
+                  <br /> <br />
+    
+                  <div>
+                    <label htmlFor="message">message</label>
+                    <br />
+                    <textarea
+                      name="message"
+                      id="message"
+                      autoComplete="off"
+                      value={contact.message}
+                      onChange={handleInput}
+                      required
+                      cols="30"
+                      rows="6"
+                    ></textarea>
+                  </div>
+                  <br /> <br />
+    
+                  <div>
+                    <button type="submit">submit</button>
+                  </div>
+                </form>
+              </section>
+            </div>
+    
+            <section className="mb-3">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.2613173278896!2d73.91411937501422!3d18.562253982539413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c147b8b3a3bf%3A0x6f7fdcc8e4d6c77e!2sPhoenix%20Marketcity%20Pune!5e0!3m2!1sen!2sin!4v1697604225432!5m2!1sen!2sin"
+                width="100%"
+                height="450"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
             </section>
+          </section>
         </>
-    );
+      );
 };

@@ -4,9 +4,9 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('token') || "");
-
-  const [user,setUser]=useState("");
-  const [services,setServices]= useState([])
+  const [user, setUser] = useState(null);
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true); // Track loading state
 
   const storeTokenInLocalStorage = (serverToken) => {
     setToken(serverToken);
@@ -20,62 +20,50 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
   };
 
-  //jwr authentication - to get current login user data
-  const userAuthentication=async()=>{
+  // JWT authentication - get current logged-in user data
+  const userAuthentication = async () => {
     try {
-      const response=await fetch("http://localhost:4000/api/auth/user",
-        {
-          method:"GET",
-          headers:{
-            Authorization:`Bearer  ${token}`
-          },
-        }
-      );
-      if(response.ok){
-        const Data=await response.json();
-        setUser(Data.userData)
+      const response = await fetch("http://localhost:4000/api/auth/user", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data.userData);
       }
-      
     } catch (error) {
-
-      console.error("Error while fetching userdata")
-      
+      console.error("Error while fetching userdata");
+    } finally {
+      setLoading(false); // Set loading to false after fetching user data
     }
-  }
+  };
 
-//to fetch services data from backend 
+  // Fetch services data from the backend
+  const getServices = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/api/data/service", {
+        method: "GET",
+      });
 
-const getServices=async()=>{
-  try {
-
-    const response= await fetch("http://localhost:4000/api/data/service",
-       {
-        method:"GET"
-       } 
-    )
-
-    if(response.ok){
-      const data=await  response.json();
-      console.log(data.msg)
-      setServices(data.msg)
+      if (response.ok) {
+        const data = await response.json();
+        setServices(data.msg);
+      }
+    } catch (error) {
+      console.error("services frontend error: ", error);
     }
-    
-  } catch (error) {
-     console.log(`services frontend error : ${error}`)
-    
-  }
-}
+  };
 
-  useEffect(()=>{
-    
-    getServices();
-
+  useEffect(() => {
     userAuthentication();
-  },[]);
+    getServices();
+  }, [token]);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, storeTokenInLocalStorage, LogoutUser ,user,services}}>
+    <AuthContext.Provider value={{ isLoggedIn, storeTokenInLocalStorage, LogoutUser, user, services, loading }}>
       {children}
     </AuthContext.Provider>
   );

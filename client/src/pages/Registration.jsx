@@ -50,7 +50,7 @@ export const Registration=()=>{
                     password: "",
                 });
                 toast.success("Reginstration Sucessful")
-                navigate("/login");
+                navigate("/");
             } else {
                 toast.error(res_data.extraDetails ? res_data.extraDetails :res_data.message)
             }
@@ -65,7 +65,7 @@ export const Registration=()=>{
             <div className="section-registration">
                 <div className="container grid grid-two-cols">
                     <div className="registration-image">
-                        <img src="/image/regi.jpg" alt="registation image" width="500" height="500" />
+                        <img src="/images/register.png" alt="registation image" width="500" height="500" />
                     </div>
                     <div className="registration-form">
                         <h1 className="main-heading">Registration Form</h1>

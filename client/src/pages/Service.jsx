@@ -2,7 +2,13 @@ import { useAuth } from "../store/auth";
 
 export const Service=()=>{
 
-    const {services}=useAuth()
+    const {services,isLoggedIn}=useAuth()
+    
+
+    if (!isLoggedIn) {
+        return <p>Please log in to view services.</p>;
+    }
+    
     return (
         <section className="section-services">
             <div className="container">
