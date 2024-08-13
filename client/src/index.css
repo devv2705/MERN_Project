@@ -362,3 +362,89 @@ textarea {
   padding-bottom: 10%;
 
 }
+
+.admin-users-section {
+  padding: 20px;
+  background-color: rgb(26, 24, 24); /* Light background color */
+}
+
+.admin-users-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.admin-users {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff; /* White background for the table */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  border-radius: 8px; /* Rounded corners */
+  overflow: hidden;
+}
+
+thead {
+  background: linear-gradient(to right, #007bff, #0056b3); /* Gradient background */
+}
+
+thead th {
+  padding: 15px;
+  text-align: left;
+  color: #ffffff; /* White text color */
+  font-weight: bold;
+  font-size: 16px;
+}
+
+tbody td {
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0; /* Light gray border */
+  color: #333333; /* Dark text color */
+  font-size: 14px;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9; /* Light gray background for even rows */
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1; /* Slightly darker gray on hover */
+}
+
+table th, table td {
+  text-align: left;
+}
+
+table .update, table .delete {
+  cursor: pointer;
+  color: #007bff; /* Primary color for links */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+table .update:hover, table .delete:hover {
+  text-decoration: underline;
+}
+
+.table-actions {
+  display: flex;
+  gap: 10px; /* Space between action buttons */
+}
+
+.table-actions button {
+  background-color: #007bff; /* Button background color */
+  border: none;
+  color: #ffffff; /* Button text color */
+  padding: 8px 12px;
+  border-radius: 4px; /* Rounded corners for buttons */
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.table-actions button:hover {
+  background-color: #0056b3; /* Darker background on hover */
+}
+
