@@ -1,4 +1,5 @@
 const User=require("../models/user_model")
+const Contact=require("../models/contact-model")
 
 
 const getAllUsers=async(req,res)=>{
@@ -16,4 +17,22 @@ const getAllUsers=async(req,res)=>{
     }
 }
 
-module.exports=getAllUsers;
+const getAllContact=async(req,res)=>{
+    try {
+
+        const contact=await Contact.find()
+        console.log(contact)
+        if(!contact || contact.length===0){
+            return res.status(404).json({message:"No Contact Found"})
+
+        }
+
+        return res.status(200).json(contact)
+        
+    } catch (error) {
+        next(error)
+        
+    }
+}
+
+module.exports={getAllUsers,getAllContact};

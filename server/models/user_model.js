@@ -34,7 +34,7 @@ userSchema.methods.generateToken=function(){
             email:this.email,
             isAdmin:this.isAdmin
         },process.env.JWT_SECRET_KEY,{
-            expiresIn:"20s"
+            expiresIn:"60s"
         })
 
     }catch(err){
