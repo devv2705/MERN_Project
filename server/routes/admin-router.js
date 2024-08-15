@@ -7,6 +7,10 @@ const adminMiddleware=require("../middelwares/admin-Middleware")
 router.route("/user").get(authMiddleware,adminMiddleware,adminController.getAllUsers)
 router.route("/contact").get(authMiddleware,adminMiddleware,adminController.getAllContact)
 
+router.route("/user/:id").get(authMiddleware,adminMiddleware,adminController.getUserById)
+router.route("/user/update/:id").patch(authMiddleware,adminMiddleware,adminController.updateUserById)
+
 router.route("/user/delete/:id").delete(authMiddleware,adminMiddleware,adminController.deleteUser)
+
 
 module.exports=router 

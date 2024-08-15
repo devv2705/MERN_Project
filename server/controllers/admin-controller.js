@@ -51,4 +51,36 @@ const deleteUser=async(req,res)=>{
 
 }
 
-module.exports={getAllUsers,getAllContact,deleteUser};
+const getUserById=async(req,res)=>{
+     try {
+
+        const id=req.params.id; 
+       const data= await User.findOne({_id:id},{password:0})
+
+       return res.status(200).json(data)
+
+
+     } catch (error) {
+        next(error)
+     }
+}
+
+const updateUserById=async(req,res)=>{
+    try {
+        const id=req.params.id;
+        const updatedUserData=req.body;
+        const updateData=await User.updateOne({_id:id},{
+            $set:updatedUserData
+        })
+        return res.status(200).json(updateData)
+    } catch (error) {
+        next(error)
+        
+    }
+
+}
+
+
+
+
+module.exports={getAllUsers,getAllContact,deleteUser,getUserById,updateUserById};
