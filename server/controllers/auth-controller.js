@@ -13,7 +13,7 @@ const home=async (req,res)=>{
 
 const register=async(req,res)=>{
     try{
-        //console.log(req.body)
+        
         const {username,email,phone,password}=req.body
 
         const userExist=await User.findOne({email:email})

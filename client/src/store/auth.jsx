@@ -61,7 +61,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    userAuthentication();
+    if (!user) {
+      userAuthentication();
+  }
     getServices();
   }, [token]);
 
