@@ -26,6 +26,7 @@ export const AuthProvider = ({ children }) => {
   // JWT authentication - get current logged-in user data
   const userAuthentication = async () => {
     try {
+      setLoading(true);
       const response = await fetch("http://localhost:4000/api/auth/user", {
         method: "GET",
         headers: {
@@ -36,11 +37,13 @@ export const AuthProvider = ({ children }) => {
       if (response.ok) {
         const data = await response.json();
         setUser(data.userData);
+        setLoading(false)
+      }else{
+        setLoading(false)
+
       }
     } catch (error) {
       console.error("Error while fetching userdata");
-    } finally {
-      setLoading(false); // Set loading to false after fetching user data
     }
   };
 
